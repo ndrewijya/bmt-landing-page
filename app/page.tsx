@@ -33,15 +33,81 @@ const roboto = Roboto({
 });
 
 import React, { useState } from "react";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Function untuk direct download
+  const handleDirectDownload = () => {
+    const downloadUrl =
+      "https://expo.dev/accounts/bmtfatihulbarokah/projects/koperasi-fatihul-barokah-mobile-apps/builds/d5a38dec-57d9-4531-a67b-df93d136bf1e";
+    window.open(downloadUrl, "_blank");
+  };
+
+  // Function untuk tutorial toast
+  const showTutorialToast = () => {
+    toast(
+      (t) => (
+        <div className="space-y-3 max-w-sm">
+          <div className="font-semibold text-gray-900">
+            Tutorial Download Aplikasi
+          </div>
+          <ol className="list-decimal list-inside space-y-1 text-sm text-gray-700">
+            <li>Tekan tombol "Bergabung Sekarang"</li>
+            <li>Pilih opsi "Install"</li>
+            <li>Berikan izin unduhan dari browser Anda</li>
+            <li>Buka file APK yang telah berhasil diunduh</li>
+            <li>
+              Aktifkan pengaturan "Izinkan instalasi dari sumber tidak dikenal"
+            </li>
+            <li>Ikuti seluruh tahapan proses instalasi hingga selesai</li>
+            <li>
+              Setelah berhasil menginstal aplikasi, silakan menghubungi kami
+              melalui website resmi untuk bantuan lebih lanjut
+            </li>
+          </ol>
+          <div className="flex gap-2 pt-2">
+            <button
+              onClick={() => {
+                handleDirectDownload();
+                toast.dismiss(t.id);
+              }}
+              className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
+            >
+              Download Sekarang
+            </button>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="bg-gray-300 text-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-400 transition-colors"
+            >
+              Tutup
+            </button>
+          </div>
+        </div>
+      ),
+      {
+        duration: 10000,
+        position: "top-right",
+      }
+    );
+  };
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Toast Container - Responsive */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: "text-sm",
+          style: {
+            maxWidth: "90vw",
+          },
+        }}
+      />
+
       {/* Header dengan Logo yang Diperbaiki */}
       <header className="bg-white shadow-lg border-b-2 border-blue-100 fixed top-0 w-full z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -173,24 +239,61 @@ export default function HomePage() {
       </header>
 
       {/* Main Content dengan padding top untuk fixed header */}
-      <main className="pt-20">
-        {/* Hero Section */}
+      <main className="pt-16">
         <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 min-h-screen flex items-center">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Content */}
             <div className="text-white">
-              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
                 Bergabung dengan BMT Fatihul Barokah
               </h1>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              <p className="text-lg md:text-xl lg:text-2xl mb-8 text-blue-100">
                 Solusi Keuangan Syariah yang Aman dan Terpercaya
               </p>
+
+              {/* Button Section yang Diupdate */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
-                  Daftar Sekarang
+                <button
+                  onClick={handleDirectDownload}
+                  className="bg-white text-blue-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"
+                    />
+                  </svg>
+                  <span className="text-sm sm:text-base">
+                    Bergabung Sekarang
+                  </span>
                 </button>
-                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
-                  Pelajari Lebih Lanjut
+
+                <button
+                  onClick={showTutorialToast}
+                  className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-all duration-200 hover:shadow-xl transform hover:scale-105 flex items-center justify-center gap-2"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span className="text-sm sm:text-base">
+                    Tutorial Donwload Aplikasi
+                  </span>
                 </button>
               </div>
             </div>

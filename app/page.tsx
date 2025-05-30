@@ -31,7 +31,7 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   display: "swap",
 });
-
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 export default function HomePage() {
@@ -40,6 +40,8 @@ export default function HomePage() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  const router = useRouter();
 
   // Function untuk direct download
   const handleDirectDownload = () => {
@@ -114,22 +116,37 @@ export default function HomePage() {
           <div className="flex justify-between items-center h-20">
             {/* Logo Section - Tanpa Background */}
             <div className="flex items-center flex-shrink-0">
-              <Image
-                src="/logo.png"
-                alt="BMT Fatihul Barokah Logo"
-                width={66}
-                height={66}
-                className="object-contain mr-3 hover:scale-105 transition-transform"
-                priority
-              />
-              <div className="hidden sm:block">
-                <h1 className="text-xl font-bold text-gray-900 leading-tight">
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                aria-label="Scroll ke atas"
+                className="focus:outline-none"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="BMT Fatihul Barokah Logo"
+                  width={86}
+                  height={86}
+                  className="object-contain mr-0.1 cursor-pointer hover:opacity-75 transition"
+                />
+              </button>
+              <button
+                type="button"
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="
+    flex flex-col text-left bg-transparent border-none p-0 m-0
+    focus:outline-none cursor-pointer group
+    transition
+  "
+                aria-label="Kembali ke halaman sebelumnya"
+              >
+                <span className="text-xl font-bold text-gray-900 leading-tight group-active:text-blue-700 transition">
                   BMT Fatihul Barokah
-                </h1>
-                <p className="text-sm text-blue-600 font-medium">
+                </span>
+                <span className="text-sm text-blue-600 font-medium group-active:text-blue-900 transition">
                   Solusi Keuangan Syariah
-                </p>
-              </div>
+                </span>
+              </button>
             </div>
 
             {/* Navigation Menu */}
@@ -444,7 +461,10 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Simpanan */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 id="simpanan" className="scroll-mt-28 text-2xl font-bold mb-4">
+                <h3
+                  id="simpanan"
+                  className="scroll-mt-28 text-2xl font-bold mb-4"
+                >
                   Simpanan
                 </h3>
                 <div className="space-y-6">
@@ -478,7 +498,10 @@ export default function HomePage() {
 
               {/* Pinjaman */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 id="pinjaman" className="scroll-mt-28 text-2xl font-bold mb-4">
+                <h3
+                  id="pinjaman"
+                  className="scroll-mt-28 text-2xl font-bold mb-4"
+                >
                   Pinjaman
                 </h3>
                 <div className="space-y-6">
@@ -514,7 +537,10 @@ export default function HomePage() {
         </section>
 
         {/* Contact Section */}
-        <section id="kontak" className="py-20 bg-blue-900 text-white">
+        <section
+          id="kontak"
+          className="scroll-mt-24 py-20 bg-blue-900 text-white"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold mb-4">Hubungi Kami</h2>

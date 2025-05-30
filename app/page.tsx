@@ -75,13 +75,13 @@ export default function HomePage() {
                 Layanan
               </a>
               <a
-                href="#simpanan"
+                href="#layanan"
                 className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
               >
                 Simpanan
               </a>
               <a
-                href="#pinjaman"
+                href="#layanan"
                 className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
               >
                 Pinjaman
@@ -397,7 +397,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Telepon</h3>
-                <p className="text-blue-100">+62 123 4567 890</p>
+                <p className="text-blue-100">+62 858 1925 0059</p>
               </div>
 
               <div className="text-center">

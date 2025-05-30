@@ -147,13 +147,13 @@ export default function HomePage() {
                 Layanan
               </a>
               <a
-                href="#layanan"
+                href="#simpanan"
                 className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
               >
                 Simpanan
               </a>
               <a
-                href="#layanan"
+                href="#pinjaman"
                 className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
               >
                 Pinjaman
@@ -211,14 +211,14 @@ export default function HomePage() {
                     Layanan
                   </a>
                   <a
-                    href="#layanan"
+                    href="#simpanan"
                     className="block py-2 text-gray-700 hover:text-blue-600"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Simpanan
                   </a>
                   <a
-                    href="#layanan"
+                    href="#pinjaman"
                     className="block py-2 text-gray-700 hover:text-blue-600"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -340,7 +340,7 @@ export default function HomePage() {
         </section>
 
         {/* Tentang Section */}
-        <section id="tentang" className="py-20 bg-white">
+        <section id="tentang" className="scroll-mt-18 py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -429,7 +429,7 @@ export default function HomePage() {
         </section>
 
         {/* Layanan Section */}
-        <section id="layanan" className="py-20 bg-gray-50">
+        <section id="layanan" className="scroll-mt-18 py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -444,7 +444,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               {/* Simpanan */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 id="simpanan" className="scroll-mt-28 text-2xl font-bold mb-4">
                   Simpanan
                 </h3>
                 <div className="space-y-6">
@@ -478,7 +478,7 @@ export default function HomePage() {
 
               {/* Pinjaman */}
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 id="pinjaman" className="scroll-mt-28 text-2xl font-bold mb-4">
                   Pinjaman
                 </h3>
                 <div className="space-y-6">
@@ -524,7 +524,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <svg
@@ -547,20 +547,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-2">Telepon</h3>
-                <p className="text-blue-100">+62 858 1925 0059</p>
-              </div>
-
+              {/* Jam Operasional */}
               <div className="text-center">
                 <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <svg
@@ -573,6 +560,47 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Jam Operasional</h3>
                 <p className="text-blue-100">Senin - Jumat: 09.00 - 15.00</p>
+              </div>
+
+              {/* Email */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  {/* Icon email */}
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M2.94 6.33A2 2 0 0 1 4.82 5h10.36a2 2 0 0 1 1.89 1.33L10 12.08 2.94 6.33zM2 8v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-7.31 5.48a1 1 0 0 1-1.38 0L2 8z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Email</h3>
+                <p className="text-blue-100">
+                  <a
+                    href="mailto:fatihulbarokah.bmt@gmail.com"
+                    className="no-underline focus:outline-none active:text-white transition duration-150"
+                    style={{ WebkitTapHighlightColor: "transparent" }} // menghilangkan efek biru pada tap di mobile
+                    onTouchStart={(e) => (e.currentTarget.style.color = "#fff")}
+                    onTouchEnd={(e) => (e.currentTarget.style.color = "")}
+                  >
+                    fatihulbarokah.bmt@gmail.com
+                  </a>
+                </p>
+              </div>
+
+              {/* Telepon */}
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Telepon</h3>
+                <p className="text-blue-100">+62 858 1925 0059</p>
               </div>
             </div>
           </div>

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import {
   Accordion,
@@ -31,9 +32,14 @@ const roboto = Roboto({
   display: "swap",
 });
 
-import type React from "react";
+import React, { useState } from "react";
 
 export default function HomePage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header dengan Logo yang Diperbaiki */}
@@ -96,7 +102,10 @@ export default function HomePage() {
 
             {/* Mobile Menu Button */}
             <div className="md:hidden">
-              <button className="text-gray-700 hover:text-blue-600 p-2">
+              <button
+                onClick={toggleMobileMenu}
+                className="text-gray-700 hover:text-blue-600 p-2"
+              >
                 <svg
                   className="h-6 w-6"
                   fill="none"
@@ -107,11 +116,58 @@ export default function HomePage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
+                    d={
+                      isMobileMenuOpen
+                        ? "M6 18L18 6M6 6l12 12"
+                        : "M4 6h16M4 12h16M4 18h16"
+                    }
                   />
                 </svg>
               </button>
             </div>
+
+            {/* Tambahkan mobile menu dropdown SETELAH header */}
+            {isMobileMenuOpen && (
+              <div className="md:hidden bg-white border-t border-gray-200 absolute top-full left-0 right-0 z-40">
+                <div className="px-4 py-2 space-y-1">
+                  <a
+                    href="#tentang"
+                    className="block py-2 text-gray-700 hover:text-blue-600"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Tentang Kami
+                  </a>
+                  <a
+                    href="#layanan"
+                    className="block py-2 text-gray-700 hover:text-blue-600"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Layanan
+                  </a>
+                  <a
+                    href="#layanan"
+                    className="block py-2 text-gray-700 hover:text-blue-600"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Simpanan
+                  </a>
+                  <a
+                    href="#layanan"
+                    className="block py-2 text-gray-700 hover:text-blue-600"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Pinjaman
+                  </a>
+                  <a
+                    href="#kontak"
+                    className="block py-2 bg-blue-600 text-white px-4 rounded text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Kontak
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -382,7 +438,9 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Alamat</h3>
                 <p className="text-blue-100">
-                  Jl. Madrasah I No.26, RT.10/RW.1, Gandaria Sel., Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12420
+                  Jl. Madrasah I No.26, RT.10/RW.1, Gandaria Sel., Kec.
+                  Cilandak, Kota Jakarta Selatan, Daerah Khusus
+                  Ibukota Jakarta 12420
                 </p>
               </div>
 
@@ -411,9 +469,7 @@ export default function HomePage() {
                   </svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">Jam Operasional</h3>
-                <p className="text-blue-100">
-                  Senin - Jumat: 09.00 - 15.00
-                </p>
+                <p className="text-blue-100">Senin - Jumat: 09.00 - 15.00</p>
               </div>
             </div>
           </div>

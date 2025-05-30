@@ -1,9 +1,14 @@
-import Image from "next/image"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ChevronRight,
   Phone,
@@ -15,694 +20,405 @@ import {
   Wallet,
   PiggyBank,
   CreditCard,
-} from "lucide-react"
-import { Roboto } from "next/font/google"
+} from "lucide-react";
+import { Roboto } from "next/font/google";
 // Add import at the top
-import { MobileMenu } from "@/components/mobile-menu"
+import { MobileMenu } from "@/components/mobile-menu";
 
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   display: "swap",
-})
+});
 
-export default function Home() {
+import type React from "react";
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header Section */}
-      <header className="sticky top-0 z-50 w-full bg-white border-b border-biru-perak shadow-sm">
-        <div className="container flex items-center justify-between h-20 px-4 md:px-6">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/logo.jpeg"
-              alt="BMT Fatihul Barokah Logo"
-              width={180}
-              height={60}
-              className="h-12 w-auto object-contain"
-              priority
-            />
+    <div className="min-h-screen bg-gray-50">
+      {/* Header dengan Logo yang Diperbaiki */}
+      <header className="bg-white shadow-lg border-b-2 border-blue-100 fixed top-0 w-full z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            {/* Logo Section - Tanpa Background */}
+            <div className="flex items-center flex-shrink-0">
+              <Image
+                src="/logo.png"
+                alt="BMT Fatihul Barokah Logo"
+                width={66}
+                height={66}
+                className="object-contain mr-3 hover:scale-105 transition-transform"
+                priority
+              />
+              <div className="hidden sm:block">
+                <h1 className="text-xl font-bold text-gray-900 leading-tight">
+                  BMT Fatihul Barokah
+                </h1>
+                <p className="text-sm text-blue-600 font-medium">
+                  Solusi Keuangan Syariah
+                </p>
+              </div>
+            </div>
+
+            {/* Navigation Menu */}
+            <nav className="hidden md:flex items-center space-x-6">
+              <a
+                href="#tentang"
+                className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
+              >
+                Tentang Kami
+              </a>
+              <a
+                href="#layanan"
+                className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
+              >
+                Layanan
+              </a>
+              <a
+                href="#simpanan"
+                className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
+              >
+                Simpanan
+              </a>
+              <a
+                href="#pinjaman"
+                className="text-gray-700 hover:text-blue-600 font-medium px-3 py-2 rounded-lg transition-colors hover:bg-blue-50"
+              >
+                Pinjaman
+              </a>
+              <a
+                href="#kontak"
+                className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors shadow-lg font-medium"
+              >
+                Kontak
+              </a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button className="text-gray-700 hover:text-blue-600 p-2">
+                <svg
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#tentang-kami"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Tentang Kami
-            </a>
-            <a
-              href="#layanan"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Layanan
-            </a>
-            <a
-              href="#simpanan"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Simpanan
-            </a>
-            <a
-              href="#pinjaman"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Pinjaman
-            </a>
-            <a
-              href="#cara-bergabung"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Cara Bergabung
-            </a>
-            <a
-              href="#kontak"
-              className="text-biru-utama hover:text-biru-terang transition-colors font-medium text-base"
-            >
-              Kontak
-            </a>
-          </nav>
-          {/* Replace the mobile menu button in header with: */}
-          <MobileMenu />
         </div>
       </header>
 
-      <main className="flex-1">
-        {/* Banner Section */}
-        <section className="relative w-full py-16 md:py-24 lg:py-32 bg-gradient-to-br from-biru-utama via-biru-tua to-biru-utama text-white overflow-hidden">
-          <div className="absolute inset-0 bg-black/20"></div>
-          <div className="absolute inset-0">
-            <Image
-              src="/placeholder.svg?height=800&width=1200"
-              alt="Islamic Finance Background"
-              fill
-              className="object-cover opacity-30"
-              priority
-            />
-          </div>
-          <div className="relative container px-4 md:px-6">
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
-              <div className="space-y-6 text-center lg:text-left">
-                <h1
-                  className={`${roboto.className} text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight`}
-                >
-                  Bergabung dengan BMT Fatihul Barokah
-                </h1>
-                <p
-                  className={`${roboto.className} text-biru-terang text-xl md:text-2xl font-normal leading-relaxed max-w-2xl`}
-                >
-                  Solusi Keuangan Syariah yang Aman dan Terpercaya.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button
-                    size="lg"
-                    className={`${roboto.className} bg-biru-terang hover:bg-biru-muda text-white font-medium text-lg px-8 py-4 h-auto transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl`}
+      {/* Main Content dengan padding top untuk fixed header */}
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 min-h-screen flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className="text-white">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                Bergabung dengan BMT Fatihul Barokah
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-blue-100">
+                Solusi Keuangan Syariah yang Aman dan Terpercaya
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-lg">
+                  Daftar Sekarang
+                </button>
+                <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition-colors">
+                  Pelajari Lebih Lanjut
+                </button>
+              </div>
+            </div>
+
+            {/* Hero Card */}
+            <div className="bg-white bg-opacity-10 backdrop-blur-lg rounded-2xl p-8 border border-white border-opacity-20">
+              <div className="text-center text-white">
+                <div className="w-16 h-16 bg-white bg-opacity-30 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    Daftar Sekarang
-                  </Button>
-                  <Button
-                    size="lg"
-                    className={`${roboto.className} bg-biru-terang hover:bg-biru-utama text-white font-medium text-lg px-8 py-4 h-auto transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border-2 border-biru-terang hover:border-biru-utama`}
+                    <path
+                      fillRule="evenodd"
+                      d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-4">
+                  Keuangan Syariah Digital
+                </h3>
+                <p className="text-blue-100 mb-6">
+                  Nikmati layanan perbankan syariah yang modern dan terpercaya
+                </p>
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <div className="text-3xl font-bold">100+</div>
+                    <div className="text-sm text-blue-200">Anggota</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold">5+</div>
+                    <div className="text-sm text-blue-200">Layanan</div>
+                  </div>
+                  <div>
+                    <div className="text-3xl font-bold">24/7</div>
+                    <div className="text-sm text-blue-200">Support</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Tentang Section */}
+        <section id="tentang" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Tentang BMT Fatihul Barokah
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                BMT Fatihul Barokah adalah lembaga keuangan mikro syariah yang
+                berkomitmen untuk memberikan solusi finansial berdasarkan
+                prinsip-prinsip syariah.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Feature Cards */}
+              <div className="text-center p-8 bg-blue-50 rounded-xl hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                   >
-                    Pelajari Lebih Lanjut
-                  </Button>
+                    <path
+                      fillRule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Syariah Compliance
+                </h3>
+                <p className="text-gray-600">
+                  Seluruh produk dan layanan kami sesuai dengan prinsip syariah
+                  Islam, bebas dari riba dan gharar.
+                </p>
               </div>
-              <div className="relative h-[350px] md:h-[450px] lg:h-[550px]">
-                <Image
-                  src="/placeholder.svg?height=550&width=800"
-                  alt="Koperasi Syariah"
-                  fill
-                  className="object-cover rounded-2xl shadow-2xl"
-                  priority
-                />
+
+              <div className="text-center p-8 bg-green-50 rounded-xl hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Aman dan Terpercaya
+                </h3>
+                <p className="text-gray-600">
+                  Dikelola oleh tim profesional yang berpengalaman dan
+                  terpercaya dalam industri keuangan syariah.
+                </p>
+              </div>
+
+              <div className="text-center p-8 bg-purple-50 rounded-xl hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                    <path
+                      fillRule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  Bunga Nol Persen
+                </h3>
+                <p className="text-gray-600">
+                  Kami menerapkan sistem bagi hasil yang adil dan transparan,
+                  tanpa bunga sesuai dengan prinsip syariah.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Tentang Kami Section */}
-        <section id="tentang-kami" className="w-full py-16 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-6 text-center mb-16">
-              <div className="space-y-4">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Tentang BMT Fatihul Barokah
-                </h2>
-                <p className={`${roboto.className} mx-auto max-w-[800px] text-biru-perak md:text-xl leading-relaxed`}>
-                  BMT Fatihul Barokah adalah lembaga keuangan mikro syariah yang berkomitmen untuk memberikan solusi
-                  finansial berdasarkan prinsip-prinsip syariah. Didirikan dengan visi untuk membantu masyarakat dalam
-                  mengembangkan usaha dan meningkatkan kesejahteraan ekonomi dengan cara yang halal dan berkah.
-                </p>
-              </div>
+        {/* Layanan Section */}
+        <section id="layanan" className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Layanan Kami
+              </h2>
+              <p className="text-xl text-gray-600">
+                BMT Fatihul Barokah menyediakan berbagai layanan keuangan
+                syariah untuk memenuhi kebutuhan Anda.
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="flex flex-col items-center space-y-2 border border-biru-perak rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="p-3 rounded-full bg-biru-muda">
-                  <CheckCircle className="h-8 w-8 text-biru-perak" />
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama">Syariah Compliance</h3>
-                <p className="text-center text-biru-perak">
-                  Seluruh produk dan layanan kami sesuai dengan prinsip syariah Islam, bebas dari riba dan gharar.
-                </p>
-              </div>
-              <div className="flex flex-col items-center space-y-2 border border-biru-perak rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="p-3 rounded-full bg-biru-muda">
-                  <Users className="h-8 w-8 text-biru-perak" />
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama">Aman dan Terpercaya</h3>
-                <p className="text-center text-biru-perak">
-                  Dikelola oleh tim profesional yang berpengalaman dan terpercaya dalam industri keuangan syariah.
-                </p>
-              </div>
-              <div className="flex flex-col items-center space-y-2 border border-biru-perak rounded-lg p-6 hover:shadow-md transition-shadow">
-                <div className="p-3 rounded-full bg-biru-muda">
-                  <Wallet className="h-8 w-8 text-biru-perak" />
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama">Bunga Nol Persen</h3>
-                <p className="text-center text-biru-perak">
-                  Kami menerapkan sistem bagi hasil yang adil dan transparan, tanpa bunga sesuai dengan prinsip syariah.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Layanan Kami Section */}
-        <section id="layanan" className="w-full py-12 md:py-24 lg:py-32 bg-biru-muda/20">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Layanan Kami
-                </h2>
-                <p className="mx-auto max-w-[700px] text-biru-perak md:text-xl">
-                  BMT Fatihul Barokah menyediakan berbagai layanan keuangan syariah untuk memenuhi kebutuhan Anda.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-              <div id="simpanan" className="bg-white rounded-lg p-6 shadow-md">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-full bg-biru-muda">
-                    <PiggyBank className="h-6 w-6 text-biru-utama" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-biru-utama">Simpanan</h3>
-                </div>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Tabungan Wadiah</h4>
-                      <p className="text-biru-perak">Simpanan yang dapat diambil sewaktu-waktu dengan akad wadiah.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Tabungan Haji dan Umrah</h4>
-                      <p className="text-biru-perak">Simpanan khusus untuk persiapan ibadah haji dan umrah.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Deposito Mudharabah</h4>
-                      <p className="text-biru-perak">Simpanan berjangka dengan bagi hasil yang kompetitif.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div id="pinjaman" className="bg-white rounded-lg p-6 shadow-md">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="p-3 rounded-full bg-biru-muda">
-                    <CreditCard className="h-6 w-6 text-biru-utama" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-biru-utama">Pinjaman</h3>
-                </div>
-                <ul className="space-y-4">
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Pembiayaan Murabahah</h4>
-                      <p className="text-biru-perak">
-                        Pembiayaan untuk pembelian barang dengan margin yang disepakati.
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Pembiayaan Mudharabah</h4>
-                      <p className="text-biru-perak">Pembiayaan dengan sistem bagi hasil untuk modal usaha.</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ChevronRight className="h-5 w-5 text-biru-terang mt-0.5" />
-                    <div>
-                      <h4 className="font-semibold text-biru-utama">Pembiayaan Ijarah</h4>
-                      <p className="text-biru-perak">Pembiayaan untuk sewa barang atau jasa dengan akad ijarah.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Cara Bergabung Section */}
-        <section id="cara-bergabung" className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Cara Bergabung
-                </h2>
-                <p className="mx-auto max-w-[700px] text-biru-perak md:text-xl">
-                  Bergabung dengan BMT Fatihul Barokah sangat mudah. Ikuti langkah-langkah berikut:
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-              <div className="bg-biru-muda/20 rounded-lg p-6 relative">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-biru-terang flex items-center justify-center text-white font-bold">
-                  1
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama mb-2">Daftar Online</h3>
-                <p className="text-biru-perak">
-                  Isi formulir pendaftaran online atau kunjungi kantor BMT Fatihul Barokah terdekat.
-                </p>
-              </div>
-              <div className="bg-biru-muda/20 rounded-lg p-6 relative">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-biru-terang flex items-center justify-center text-white font-bold">
-                  2
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama mb-2">Kirim Dokumen</h3>
-                <p className="text-biru-perak">
-                  Siapkan dan kirimkan dokumen yang diperlukan seperti KTP, KK, dan dokumen pendukung lainnya.
-                </p>
-              </div>
-              <div className="bg-biru-muda/20 rounded-lg p-6 relative">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-biru-terang flex items-center justify-center text-white font-bold">
-                  3
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama mb-2">Tunggu Konfirmasi</h3>
-                <p className="text-biru-perak">
-                  Tim kami akan memverifikasi dokumen Anda dan menghubungi untuk konfirmasi.
-                </p>
-              </div>
-              <div className="bg-biru-muda/20 rounded-lg p-6 relative">
-                <div className="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-biru-terang flex items-center justify-center text-white font-bold">
-                  4
-                </div>
-                <h3 className="text-xl font-bold text-biru-utama mb-2">Mulai Bertransaksi</h3>
-                <p className="text-biru-perak">
-                  Setelah disetujui, Anda dapat langsung menikmati layanan BMT Fatihul Barokah.
-                </p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-12">
-              <Button
-                className={`${roboto.className} bg-biru-terang hover:bg-biru-muda text-white font-medium px-8 py-3 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg`}
-              >
-                Daftar Sekarang
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimoni Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-biru-muda/20">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Apa Kata Anggota Kami
-                </h2>
-                <p className="mx-auto max-w-[700px] text-biru-perak md:text-xl">
-                  Dengarkan pengalaman anggota yang telah bergabung dengan BMT Fatihul Barokah.
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <Card className="border-biru-perak">
-                <CardContent className="p-6">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full bg-biru-muda h-12 w-12 flex items-center justify-center">
-                        <span className="text-biru-utama font-bold">AS</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-biru-utama">Ahmad Saputra</h3>
-                        <p className="text-sm text-biru-perak">Pengusaha UMKM</p>
-                      </div>
-                    </div>
-                    <p className="text-biru-utama">
-                      "BMT Fatihul Barokah membantu saya mengembangkan usaha dengan pembiayaan yang sesuai syariah.
-                      Prosesnya cepat dan pelayanannya ramah."
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* Simpanan */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Simpanan
+                </h3>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Tabungan Wadiah
+                    </h4>
+                    <p className="text-gray-600">
+                      Simpanan yang dapat diambil sewaktu-waktu dengan akad
+                      wadiah.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-              <Card className="border-biru-perak">
-                <CardContent className="p-6">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full bg-biru-muda h-12 w-12 flex items-center justify-center">
-                        <span className="text-biru-utama font-bold">SR</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-biru-utama">Siti Rahmawati</h3>
-                        <p className="text-sm text-biru-perak">Ibu Rumah Tangga</p>
-                      </div>
-                    </div>
-                    <p className="text-biru-utama">
-                      "Tabungan di BMT Fatihul Barokah membuat saya tenang karena sesuai syariah. Bagi hasilnya juga
-                      kompetitif dan transparan."
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Tabungan Umrah
+                    </h4>
+                    <p className="text-gray-600">
+                      Simpanan khusus untuk persiapan ibadah umrah.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-              <Card className="border-biru-perak">
-                <CardContent className="p-6">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-4">
-                      <div className="rounded-full bg-biru-muda h-12 w-12 flex items-center justify-center">
-                        <span className="text-biru-utama font-bold">HW</span>
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-biru-utama">Hendra Wijaya</h3>
-                        <p className="text-sm text-biru-perak">Pedagang</p>
-                      </div>
-                    </div>
-                    <p className="text-biru-utama">
-                      "Saya sangat terbantu dengan pembiayaan dari BMT Fatihul Barokah. Angsurannya ringan dan tidak
-                      memberatkan usaha saya."
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Deposito Mudharabah
+                    </h4>
+                    <p className="text-gray-600">
+                      Simpanan berjangka dengan bagi hasil yang kompetitif.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
+
+              {/* Pinjaman */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                  Pinjaman
+                </h3>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-orange-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Pembiayaan Murabahah
+                    </h4>
+                    <p className="text-gray-600">
+                      Pembiayaan untuk pembelian barang dengan margin yang
+                      disepakati.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-red-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Pembiayaan Mudharabah
+                    </h4>
+                    <p className="text-gray-600">
+                      Pembiayaan dengan sistem bagi hasil untuk modal usaha.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-indigo-500 pl-4">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      Pembiayaan Ijarah
+                    </h4>
+                    <p className="text-gray-600">
+                      Pembiayaan untuk sewa barang atau jasa dengan akad ijarah.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Pertanyaan yang Sering Diajukan
-                </h2>
-                <p className="mx-auto max-w-[700px] text-biru-perak md:text-xl">
-                  Temukan jawaban untuk pertanyaan umum tentang BMT Fatihul Barokah.
-                </p>
-              </div>
+        {/* Contact Section */}
+        <section id="kontak" className="py-20 bg-blue-900 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold mb-4">Hubungi Kami</h2>
+              <p className="text-xl text-blue-100">
+                Jika Anda memiliki pertanyaan atau membutuhkan informasi lebih
+                lanjut, jangan ragu untuk menghubungi kami.
+              </p>
             </div>
-            <div className="mx-auto max-w-3xl mt-12">
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1" className="border-biru-perak">
-                  <AccordionTrigger className="text-biru-utama hover:text-biru-terang">
-                    Apa itu BMT Fatihul Barokah?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-biru-perak">
-                    BMT Fatihul Barokah adalah lembaga keuangan mikro syariah yang beroperasi berdasarkan
-                    prinsip-prinsip syariah Islam. Kami menyediakan layanan keuangan seperti simpanan, pembiayaan, dan
-                    layanan lainnya yang sesuai dengan syariah.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2" className="border-biru-perak">
-                  <AccordionTrigger className="text-biru-utama hover:text-biru-terang">
-                    Bagaimana cara menjadi anggota BMT Fatihul Barokah?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-biru-perak">
-                    Untuk menjadi anggota, Anda perlu mengisi formulir pendaftaran, menyerahkan fotokopi KTP dan KK,
-                    serta membayar simpanan pokok dan simpanan wajib sesuai ketentuan. Anda dapat mendaftar online atau
-                    langsung mengunjungi kantor kami.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-3" className="border-biru-perak">
-                  <AccordionTrigger className="text-biru-utama hover:text-biru-terang">
-                    Apa perbedaan BMT dengan bank konvensional?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-biru-perak">
-                    BMT beroperasi berdasarkan prinsip syariah yang bebas dari riba (bunga), gharar (ketidakjelasan),
-                    dan maysir (spekulasi). BMT menggunakan sistem bagi hasil yang adil dan transparan, bukan sistem
-                    bunga seperti bank konvensional.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-4" className="border-biru-perak">
-                  <AccordionTrigger className="text-biru-utama hover:text-biru-terang">
-                    Berapa minimal setoran untuk membuka tabungan?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-biru-perak">
-                    Minimal setoran awal untuk membuka tabungan di BMT Fatihul Barokah bervariasi tergantung jenis
-                    produk. Untuk tabungan wadiah, minimal setoran awal adalah Rp 50.000, sedangkan untuk deposito
-                    mudharabah minimal Rp 1.000.000.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-5" className="border-biru-perak">
-                  <AccordionTrigger className="text-biru-utama hover:text-biru-terang">
-                    Bagaimana cara mengajukan pembiayaan?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-biru-perak">
-                    Untuk mengajukan pembiayaan, Anda perlu menjadi anggota BMT terlebih dahulu, kemudian mengisi
-                    formulir pengajuan pembiayaan, menyerahkan dokumen yang diperlukan seperti KTP, KK, slip gaji atau
-                    bukti penghasilan, dan jaminan sesuai ketentuan. Tim kami akan melakukan survei dan analisis sebelum
-                    memberikan keputusan.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-        </section>
 
-        {/* Formulir Kontak Section */}
-        <section id="kontak" className="w-full py-12 md:py-24 lg:py-32 bg-biru-muda/20">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-start">
-              <div className="space-y-4">
-                <h2
-                  className={`${roboto.className} text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-biru-utama`}
-                >
-                  Hubungi Kami
-                </h2>
-                <p className="text-biru-perak md:text-xl">
-                  Jika Anda memiliki pertanyaan atau membutuhkan informasi lebih lanjut, jangan ragu untuk menghubungi
-                  kami.
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Alamat</h3>
+                <p className="text-blue-100">
+                  Jl. Madrasah I No.26, RT.10/RW.1, Gandaria Sel., Kec. Cilandak, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12420
                 </p>
-                <div className="space-y-4 mt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-biru-muda">
-                      <MapPin className="h-5 w-5 text-biru-utama" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-biru-utama">Alamat</h3>
-                      <p className="text-biru-perak">Jl. Raya Fatihul Barokah No. 123, Kota, Indonesia</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-biru-muda">
-                      <Phone className="h-5 w-5 text-biru-utama" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-biru-utama">Telepon</h3>
-                      <p className="text-biru-perak">+62 123 4567 890</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-biru-muda">
-                      <Mail className="h-5 w-5 text-biru-utama" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-biru-utama">Email</h3>
-                      <p className="text-biru-perak">info@bmtfatihulbarokah.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-biru-muda">
-                      <Clock className="h-5 w-5 text-biru-utama" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-biru-utama">Jam Operasional</h3>
-                      <p className="text-biru-perak">Senin - Jumat: 08.00 - 16.00</p>
-                      <p className="text-biru-perak">Sabtu: 08.00 - 12.00</p>
-                    </div>
-                  </div>
-                </div>
               </div>
-              <div className="space-y-4">
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-biru-utama mb-4">Kirim Pesan</h3>
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div className="space-y-2">
-                        <label htmlFor="name" className="text-sm font-medium text-biru-utama">
-                          Nama Lengkap
-                        </label>
-                        <Input
-                          id="name"
-                          placeholder="Masukkan nama lengkap"
-                          className="bg-biru-perak/20 border-biru-perak focus:border-biru-terang"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label htmlFor="email" className="text-sm font-medium text-biru-utama">
-                          Email
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="Masukkan email"
-                          className="bg-biru-perak/20 border-biru-perak focus:border-biru-terang"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="phone" className="text-sm font-medium text-biru-utama">
-                        Nomor Telepon
-                      </label>
-                      <Input
-                        id="phone"
-                        placeholder="Masukkan nomor telepon"
-                        className="bg-biru-perak/20 border-biru-perak focus:border-biru-terang"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="subject" className="text-sm font-medium text-biru-utama">
-                        Subjek
-                      </label>
-                      <Input
-                        id="subject"
-                        placeholder="Masukkan subjek pesan"
-                        className="bg-biru-perak/20 border-biru-perak focus:border-biru-terang"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium text-biru-utama">
-                        Pesan
-                      </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Masukkan pesan Anda"
-                        className="min-h-[120px] bg-biru-perak/20 border-biru-perak focus:border-biru-terang"
-                      />
-                    </div>
-                    <Button
-                      className={`${roboto.className} bg-biru-terang hover:bg-biru-muda text-white font-medium px-8 py-3 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg`}
-                    >
-                      Kirim Pesan
-                    </Button>
-                  </form>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
                 </div>
+                <h3 className="text-lg font-semibold mb-2">Telepon</h3>
+                <p className="text-blue-100">+62 123 4567 890</p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <svg
+                    className="w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2">Jam Operasional</h3>
+                <p className="text-blue-100">
+                  Senin - Jumat: 09.00 - 15.00
+                </p>
               </div>
             </div>
           </div>
         </section>
       </main>
-
-      {/* Footer */}
-      <footer className="w-full bg-biru-tua text-white py-12">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/logo.jpeg"
-                  alt="BMT Fatihul Barokah Logo"
-                  width={150}
-                  height={50}
-                  className="h-auto bg-white p-2 rounded"
-                />
-              </div>
-              <p className="text-biru-perak">
-                BMT Fatihul Barokah adalah lembaga keuangan mikro syariah yang berkomitmen untuk memberikan solusi
-                finansial berdasarkan prinsip-prinsip syariah.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Tautan Cepat</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#tentang-kami" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Tentang Kami
-                  </a>
-                </li>
-                <li>
-                  <a href="#layanan" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Layanan
-                  </a>
-                </li>
-                <li>
-                  <a href="#cara-bergabung" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Cara Bergabung
-                  </a>
-                </li>
-                <li>
-                  <a href="#kontak" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Kontak
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Produk</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#simpanan" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Simpanan
-                  </a>
-                </li>
-                <li>
-                  <a href="#pinjaman" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Pinjaman
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Zakat & Wakaf
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="text-biru-perak hover:text-biru-terang transition-colors">
-                    Pembayaran
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Kontak</h3>
-              <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-biru-perak" />
-                  <span className="text-biru-perak">Jl. Raya Fatihul Barokah No. 123, Kota, Indonesia</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-biru-perak" />
-                  <span className="text-biru-perak">+62 123 4567 890</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-biru-perak" />
-                  <span className="text-biru-perak">info@bmtfatihulbarokah.com</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-biru-perak/30 mt-8 pt-8 text-center">
-            <p className="text-biru-perak">
-              &copy; {new Date().getFullYear()} BMT Fatihul Barokah. Hak Cipta Dilindungi.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
-  )
+  );
 }
